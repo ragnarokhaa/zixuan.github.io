@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Zixuan Ni</title>
+  <meta name="description" content="Personal introduction page for Zixuan Ni." />
+  <link rel="preload" as="image" href="me.jpg" />
+  <style>
+    body {
+      margin: 0;
+      background: #fff;
+      color: #111;
+      font-family: -apple-system, system-ui, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    .wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 56px 24px;
+    }
+
+    .head {
+      text-align: center;
+    }
+
+    .head img {
+      width: 140px;
+      height: 140px;
+      border-radius: 8px;
+      object-fit: cover;
+      display: block;
+      margin: 0 auto 20px;
+      transition: filter 220ms ease, opacity 220ms ease;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+      background-color: #f5f5f5;
+      background-image: linear-gradient(135deg, #f5f5f5 0%, #eeeeee 100%);
+    }
+
+    .head img.blur {
+      filter: blur(10px);
+      opacity: 0.8;
+    }
+
+    .head img.loaded {
+      filter: none;
+      opacity: 1;
+    }
+
+    h1 {
+      margin: 0 0 8px 0;
+      font-size: 30px;
+      letter-spacing: -0.02em;
+      font-weight: 600;
+    }
+
+    .tag {
+      margin: 0 0 16px 0;
+      color: #555;
+      font-weight: 400;
+      line-height: 1.4;
+    }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      margin-top: 8px;
+    }
+
+    .links a {
+      margin: 0;
+      color: #111;
+      text-decoration: none;
+      transition: all 200ms ease;
+      display: inline-flex;
+      align-items: center;
+      line-height: 1.2;
+      font-weight: 400;
+      padding: 4px 0;
+    }
+
+    .links a:hover {
+      color: #333;
+      transform: translateY(-1px);
+    }
+
+    .links a.disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    .links a:focus-visible {
+      outline: 2px solid #111;
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+
+    .bio {
+      margin-top: 32px;
+      color: #333;
+      line-height: 1.6;
+      font-size: 18px;
+      text-align: center;
+    }
+
+    .terminal {
+      display: block;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      background: #0f1117;
+      color: #e6e7eb;
+      border: 1px solid #1f2330;
+      border-radius: 8px;
+      padding: 12px 14px;
+      margin-top: 32px;
+      max-height: 360px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      line-height: 1.45;
+      font-size: 14px;
+      white-space: pre-wrap;
+      word-break: break-word;
+      overflow-wrap: anywhere;
+      hyphens: auto;
+    }
+
+    .terminal[hidden] {
+      display: none;
+    }
+
+    .terminal strong {
+      color: #9cdcfe;
+    }
+
+    .terminal a {
+      color: #9cdcfe;
+    }
+
+    footer {
+      margin-top: 48px;
+      text-align: center;
+      color: #888;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="wrap">
+    <header class="head">
+      <img id="hero" src="me.jpg" alt="Portrait of Zixuan Ni" class="blur" />
+      <h1>Zixuan Ni</h1>
+      <p class="tag">PHD in Wuhan University — Working in deep learning for disaster prediction, VLM, and AI agents.<br>Belief in the future of AI agents.</p>
+      <nav class="links" aria-label="Primary navigation">
+        <a href="#" data-target="about">About</a>
+        <a href="#" data-target="projects">Projects</a>
+        <a href="#" data-target="experience">Experience</a>
+        <a href="#" data-target="contact">Contact</a>
+        <a href="https://github.com/your-handle">GitHub</a>
+        <a href="https://www.linkedin.com/in/your-handle">LinkedIn</a>
+        <a href="mailto:ni654197330@gmail.com">Email</a>
+        <a href="resume.pdf">Resume</a>
+      </nav>
+    </header>
+
+    <section class="bio">
+      I am currently studying remote sensing and disaster-related geoscience, with a strong research focus on environmental monitoring and risk prediction.
+       Beyond my academic field, I have a deep passion for frontier technologies such as vision-language models (VLMs), large foundation models, and AI agents. 
+       I believe the future belongs to the era of intelligent agents—autonomous systems that integrate perception, reasoning, and action to revolutionize how we interact with the world.
+    </section>
+
+    <pre class="terminal" id="terminal" hidden aria-live="polite" aria-atomic="true"></pre>
+
+    <footer>
+      &copy; <span id="year"></span> Zixuan Ni. Crafted with gratitude and curiosity.
+    </footer>
+  </main>
+
+  <script>
+    (function () {
+      var hero = document.getElementById('hero');
+      var tagEl = document.querySelector('.tag');
+      if (hero && hero.complete) {
+        hero.classList.add('loaded');
+        hero.classList.remove('blur');
+      } else if (hero) {
+        hero.onload = function () {
+          hero.classList.add('loaded');
+          hero.classList.remove('blur');
+        };
+      }
+
+      if (tagEl) {
+        tagEl.innerHTML = 'PHD in Wuhan University— Working in deep learning for disaster prediction, VLM, and AI agents<br>Belief in the future of AI agents.';
+      }
+
+      var terminal = document.getElementById('terminal');
+      var navLinks = document.querySelectorAll('.links a[data-target]');
+      var allLinks = document.querySelectorAll('.links a');
+      var isTyping = false;
+      var typingTimeout = null;
+      var typingToken = 0;
+
+      var contentMap = {
+        about: [
+          'Hi, I\'m Zixuan Ni.',
+      'PHD in Wuhan University — Working in deep learning for disaster prediction VLM and AI agent. Belief in the future of AI agents.',
+      '> open about',
+          '',
+          '',
+          'I thrive at the intersection of engineering, product thinking, and developer experience. I enjoy shipping',
+          'features that feel effortless to the user, yet are robust under the hood.',
+          '',
+          'Recent focus areas:',
+          '- Leading cross-functional delivery for customer-facing applications',
+          '- Partnering with design to create reusable component systems',
+          '- Coaching teams on technical discovery and async collaboration'
+        ],
+        projects: [
+          '> open projects',
+          '',
+          '- Atlas Launchpad - led the rewrite of a legacy workflow app, trimming onboarding time by 45%',
+          '- Nova AI Toolkit - built a developer-first UI for machine-learning experimentation (React, Python)',
+          '- Horizon Labs - co-created a weekly maker hour to ship small experiments and demystify new tech'
+        ],
+        experience: [
+          '> open experience',
+          '',
+          'Current: Senior Software Engineer @ PHD',
+          '   - Leading a team delivering data-rich experiences for enterprise customers',
+          '   - Designing APIs and tooling that scale across product surfaces',
+          '',
+          'Past: Software Engineer @ Previous Org',
+          '   - Built zero-downtime deployment pipelines and observability dashboards',
+          '   - Collaborated with research to prototype AR interactions for field technicians',
+          '',
+          'Education: B.S. in Computer Science, Your University'
+        ],
+        contact: [
+          '> open contact',
+          '',
+          'Let\'s build something together.',
+          '- Email: ni654197330@gmail.com',
+
+          '- Calendar: https://cal.com/your-handle',
+          '- Newsletter: https://your-site.com/newsletter'
+        ]
+      };
+
+      function clearTerminal() {
+        terminal.textContent = '';
+      }
+
+      function setNavDisabled(disabled) {
+        allLinks.forEach(function (link) {
+          link.classList.toggle('disabled', disabled);
+          if (disabled) {
+            link.setAttribute('aria-disabled', 'true');
+          } else {
+            link.removeAttribute('aria-disabled');
+          }
+        });
+      }
+
+      function cancelTyping() {
+        typingToken++;
+        if (typingTimeout) {
+          clearTimeout(typingTimeout);
+          typingTimeout = null;
+        }
+        isTyping = false;
+        setNavDisabled(false);
+      }
+
+      function typeLines(lines, done) {
+        isTyping = true;
+        setNavDisabled(true);
+        var i = 0;
+        var char = 0;
+        var myToken = ++typingToken;
+
+        function step() {
+          if (myToken !== typingToken) {
+            return;
+          }
+
+          if (i >= lines.length) {
+            isTyping = false;
+            setNavDisabled(false);
+            if (myToken === typingToken && typeof done === 'function') {
+              done();
+            }
+            return;
+          }
+
+          var line = lines[i];
+          if (char < line.length) {
+            terminal.textContent += line.charAt(char);
+            char++;
+          } else {
+            terminal.textContent += '\n';
+            i++;
+            char = 0;
+          }
+
+          terminal.scrollTop = terminal.scrollHeight;
+          typingTimeout = setTimeout(step, 4);
+        }
+
+        typingTimeout = setTimeout(step, 0);
+      }
+
+      function linkify() {
+        var text = terminal.textContent;
+        var html = text
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');
+        terminal.innerHTML = html;
+      }
+
+      function show(key) {
+        var lines = contentMap[key] || ['> unknown command'];
+        terminal.hidden = false;
+        cancelTyping();
+        clearTerminal();
+        typeLines(lines, linkify);
+        terminal.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      navLinks.forEach(function (link) {
+        link.onclick = function (event) {
+          event.preventDefault();
+          show(link.dataset.target);
+        };
+      });
+
+      document.querySelectorAll('.links a[href]:not([data-target]):not([href^="mailto:"])').forEach(function (link) {
+        link.target = '_blank';
+        link.rel = 'noopener';
+      });
+
+      var hash = window.location.hash.slice(1);
+      if (hash && contentMap[hash]) {
+        show(hash);
+      }
+
+      var yearEl = document.getElementById('year');
+      if (yearEl) {
+        yearEl.textContent = new Date().getFullYear();
+      }
+    })();
+  </script>
+</body>
+
+</html>
